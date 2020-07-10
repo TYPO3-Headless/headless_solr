@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:layout name="Split"/>
+
+<f:section name="content">
+	<f:spaceless>
+		<f:format.raw>
+			<f:format.json value="{
+              form: '{f:render(partial: \'Search/Form\', section: \'Form\', arguments: \'{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}\') -> headless:format.json.decode()}',
+              documents: '{f:render(partial: \'Result/Document\', section: \'Document\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
+              resultPerPage: '{f:render(partial: \'Result/PerPage\', section: \'PerPage\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
+              allResultCount: resultSet.allResultCount,
+			  currentSearch: '{s:uri.search.currentSearch()}',
+			  arguments: arguments.q
+		  }"/>
+		</f:format.raw>
+	</f:spaceless>
+</f:section>

@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers/">
+
+<f:section name="Document">
+	<f:spaceless>
+		<f:if condition="{resultSet.hasSearched}">
+			{"pagination": <s:widget.resultPaginate resultSet="{resultSet}">
+			,"list": {
+			"count": {resultSet.searchResults -> f:count()}
+			,"results": [<f:for each="{resultSet.searchResults}" as="searchResult" iteration="iterator">
+				<f:format.raw>
+				<f:format.json value="{
+					uid: searchResult.fields.uid,
+					pid: searchResult.fields.pid,
+					typeNum: searchResult.fields.typeNum,
+					site: searchResult.fields.site,
+					type: searchResult.fields.type,
+					searchType: searchResult.searchType_stringS,
+					title: searchResult.fields.title,
+					titleExact: searchResult.fields.titleExact,
+					subTitle: searchResult.fields.subTitle,
+					navTitle: searchResult.fields.navTitle,
+					author: searchResult.fields.author,
+					content: searchResult.fields.content,
+					contentExact: searchResult.fields.contentExact,
+					teaser: searchResult.fields.teaser,
+					form: searchResult.fields.form_textExactS,
+					ingredients: searchResult.fields.ingredients_textExactS,
+					dosing: searchResult.fields.dosing_textExactS,
+					responsible: searchResult.fields.responsible_textExactS,
+					warnings: searchResult.fields.warnings_textExactS,
+					purpose: searchResult.fields.purpose_textExactS,
+					url: '{searchResult.fields.url -> headless:format.json.decode()}',
+					image: '{searchResult.fields.image_stringM.0 -> headless:format.json.decode()}'
+				  }"/>
+				</f:format.raw>
+				{f:if(condition: iterator.isLast, else: ',')}
+		</f:for>]}
+			</s:widget.resultPaginate>}
+		</f:if>
+	</f:spaceless>
+</f:section>

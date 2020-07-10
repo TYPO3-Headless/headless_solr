@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:section name="PerPage">
+	<f:spaceless>
+		[<f:for each="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchResultsPerPageSwitchOptionsAsArray}" as="availablePerPage" iteration="iterator">
+			<f:format.raw>
+				<f:format.json value="{
+				  currentSearch: '{s:uri.search.currentSearch()}',
+				  usedResultsPerPage: resultSet.usedResultsPerPage,
+				  availablePerPage: availablePerPage
+			  }"/>
+			</f:format.raw>
+			{f:if(condition: iterator.isLast, else: ',')}
+	</f:for>]
+	</f:spaceless>
+</f:section>
