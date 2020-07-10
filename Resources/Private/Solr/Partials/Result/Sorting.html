@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+
+<f:section name="Sorting">
+			<f:for each="{resultSet.sortings}" as="sorting">
+
+				<f:if condition="{sorting.isResetOption}">
+					<f:then>
+						<li>
+							<a href="{s:uri.sorting.removeSorting()}" class="solr-ajaxified">{sorting.label}</a>
+						</li>
+					</f:then>
+
+					<f:else>
+						<f:if condition="{sorting.selected}">
+							<f:then>
+								<li class="active">
+									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}" class="solr-ajaxified">
+										<f:if condition="{sorting.isAscDirection}">
+											<f:then><span class=" glyphicon glyphicon-arrow-up pull-right"></span></f:then>
+											<f:else><span class=" glyphicon glyphicon-arrow-down pull-right"></span></f:else>
+										</f:if>
+										<span>{sorting.label}</span>
+
+									</a>
+								</li>
+							</f:then>
+							<f:else>
+								<li>
+									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.direction)}" class="solr-ajaxified">{sorting.label}</a>
+								</li>
+							</f:else>
+						</f:if>
+					</f:else>
+			</f:if>
+
+			</f:for>
+</f:section>

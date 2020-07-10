@@ -1,0 +1,7 @@
+plugin.tx_solr {
+    view {
+        templateRootPath = EXT:headless_solr/Resources/Private/Solr/Templates/
+        partialRootPath = EXT:headless_solr/Resources/Private/Solr/Partials/
+        layoutRootPath = EXT:headless_solr/Resources/Private/Solr/Layouts/
+    }
+}
