@@ -16,7 +16,6 @@
 					typeNum: searchResult.fields.typeNum,
 					site: searchResult.fields.site,
 					type: searchResult.fields.type,
-					searchType: searchResult.searchType_stringS,
 					title: searchResult.fields.title,
 					titleExact: searchResult.fields.titleExact,
 					subTitle: searchResult.fields.subTitle,
@@ -24,15 +23,7 @@
 					author: searchResult.fields.author,
 					content: searchResult.fields.content,
 					contentExact: searchResult.fields.contentExact,
-					teaser: searchResult.fields.teaser,
-					form: searchResult.fields.form_textExactS,
-					ingredients: searchResult.fields.ingredients_textExactS,
-					dosing: searchResult.fields.dosing_textExactS,
-					responsible: searchResult.fields.responsible_textExactS,
-					warnings: searchResult.fields.warnings_textExactS,
-					purpose: searchResult.fields.purpose_textExactS,
-					url: '{searchResult.fields.url -> headless:format.json.decode()}',
-					image: '{searchResult.fields.image_stringM.0 -> headless:format.json.decode()}'
+					url: '{searchResult.fields.url -> headless:format.json.decode()}'
 				  }"/>
 				</f:format.raw>
 				{f:if(condition: iterator.isLast, else: ',')}
