@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+	  data-namespace-typo3-fluid="true"
+>
+
+<f:section name="Pagination">
+	<f:spaceless>
+		<f:format.raw>
+			{
+				"current":  <f:format.json value="{currentPage}" />,
+				"previous": <f:format.json value="{pagination.previousPageNumber}" />,
+				"next":     <f:format.json value="{pagination.nextPageNumber}" />,
+				"links": [
+					<f:for each="{pagination.allPageNumbers}" as="page" iteration="iterator">
+						{
+							"link": <f:format.json value="{s:uri.paginate.resultPage(page: page)}" />,
+							"active": <f:format.json value="{f:if(condition:'{currentPage} == {iterator.cycle}',then:'true',else:'false') -> headless:format.json.decode()}" />
+						}
+						{f:if(condition: iterator.isLast, else: ',')}
+					</f:for>
+				]
+			}
+		</f:format.raw>
+	</f:spaceless>
+</f:section>

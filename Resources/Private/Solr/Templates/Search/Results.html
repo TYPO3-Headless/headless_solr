@@ -8,12 +8,13 @@
 	<f:spaceless>
 		<f:format.raw>
 			<f:format.json value="{
-              form: '{f:render(partial: \'Search/Form\', section: \'Form\', arguments: \'{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}\') -> headless:format.json.decode()}',
-              documents: '{f:render(partial: \'Result/Document\', section: \'Document\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
-              resultPerPage: '{f:render(partial: \'Result/PerPage\', section: \'PerPage\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
-              allResultCount: resultSet.allResultCount,
-			  currentSearch: '{s:uri.search.currentSearch()}',
-			  arguments: arguments.q
+				form: '{f:render(partial: \'Search/Form\', section: \'Form\', arguments: \'{arguments:arguments, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace}\') -> headless:format.json.decode()}',
+				documents: '{f:render(partial: \'Result/Document\', section: \'Document\', arguments: \'{currentPage:currentPage,pagination:pagination,resultSet:resultSet}\') -> headless:format.json.decode()}',
+				resultPerPage: '{f:render(partial: \'Result/PerPage\', section: \'PerPage\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
+				allResultCount: resultSet.allResultCount,
+				resultsPerPage: resultSet.usedResultsPerPage,
+				currentSearch: '{s:uri.search.currentSearch()}',
+				arguments: arguments.q
 		  }"/>
 		</f:format.raw>
 	</f:spaceless>
