@@ -4,4 +4,7 @@ plugin.tx_solr {
         partialRootPath = EXT:headless_solr/Resources/Private/Solr/Partials/
         layoutRootPath = EXT:headless_solr/Resources/Private/Solr/Layouts/
     }
+    settings {
+        searchPid =
+    }
 }

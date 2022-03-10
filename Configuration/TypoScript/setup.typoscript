@@ -1,3 +1,9 @@
+plugin.tx_solr {
+    settings {
+        searchPid = {$plugin.tx_solr.settings.searchPid}
+    }
+}
+
 tt_content.list =< lib.contentElementWithHeader
 tt_content.list {
     fields {
