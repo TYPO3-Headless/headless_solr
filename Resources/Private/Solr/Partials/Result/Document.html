@@ -14,7 +14,6 @@
 						<f:format.json value="{
 							uid: searchResult.fields.uid,
 							pid: searchResult.fields.pid,
-							typeNum: searchResult.fields.typeNum,
 							site: searchResult.fields.site,
 							type: searchResult.fields.type,
 							title: searchResult.fields.title,
@@ -24,7 +23,7 @@
 							author: searchResult.fields.author,
 							content: searchResult.fields.content,
 							contentExact: searchResult.fields.contentExact,
-							url: '{searchResult.fields.url -> headless:format.json.decode()}'
+							url: searchResult.fields.url
 						  }"/>
 						</f:format.raw>
 						{f:if(condition: iterator.isLast, else: ',')}
