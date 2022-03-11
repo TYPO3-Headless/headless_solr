@@ -7,6 +7,24 @@
 <f:format.raw>
 	<f:format.json value="{
 		label: facet.label,
-		todo: 'facet type \'hierarchy\' has not been implemented yet!'
+		options: '{f:render(section:\'hierarchyTree\',arguments:\'{node:facet,facet:facet}\') -> headless:format.json.decode()}'
 	}" />
 </f:format.raw>
+
+<f:section name="hierarchyTree">
+	<f:format.raw>
+		[
+			<f:for each="{node.childNodes}" as="childNode" iteration="iterator">
+				<f:format.json value="{
+					value: childNode.label,
+					label: '{f:cObject(typoscriptObjectPath:\'lib.tx_solr.sys_category_title\',data:childNode.label)}',
+					count: childNode.documentCount,
+					uri: '{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}',
+					children: '{f:render(section:\'hierarchyTree\',arguments:\'{node:childNode,facet:facet}\') -> headless:format.json.decode()}'
+				}" />
+				<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+
+			</f:for>
+		]
+	</f:format.raw>
+</f:section>

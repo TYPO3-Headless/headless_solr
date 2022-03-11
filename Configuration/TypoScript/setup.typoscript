@@ -4,6 +4,18 @@ plugin.tx_solr {
     }
 }
 
+lib.tx_solr.sys_category_title = RECORDS
+lib.tx_solr.sys_category_title {
+    source.current = 1
+    tables = sys_category
+    dontCheckPid = 1
+    conf {
+        sys_category = TEXT
+        sys_category.field = title
+        sys_category.htmlSpecialChars = 1
+    }
+}
+
 tt_content.list =< lib.contentElementWithHeader
 tt_content.list {
     fields {
