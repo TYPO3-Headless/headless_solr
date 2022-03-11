@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+	  data-namespace-typo3-fluid="true"
+>
+
+<f:format.raw>
+	<f:format.json value="{
+		label: facet.label,
+		options: '{f:render(section:\'options\',arguments:\'{facet:facet}\') -> headless:format.json.decode()}'
+	}" />
+</f:format.raw>
+
+<f:section name="options">
+	<f:format.raw>
+		[
+			<f:for each="{facet.options}" as="option" iteration="iterator">
+				<f:format.json value="{
+					value: option.value,
+					label: option.label,
+					count: option.documentCount,
+					uri: '{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}'
+				}" />
+				<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+			</f:for>
+		]
+	</f:format.raw>
+</f:section>
