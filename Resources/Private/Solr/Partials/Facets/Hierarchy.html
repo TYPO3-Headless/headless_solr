@@ -19,7 +19,10 @@
 					value: childNode.label,
 					label: '{f:cObject(typoscriptObjectPath:\'lib.tx_solr.sys_category_title\',data:childNode.label)}',
 					count: childNode.documentCount,
-					uri: '{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}',
+					uri: {
+						set: '{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}',
+						unset: '{s:uri.facet.removeFacetItem(facet: facet, facetItem: childNode)}'
+					},
 					children: '{f:render(section:\'hierarchyTree\',arguments:\'{node:childNode,facet:facet}\') -> headless:format.json.decode()}'
 				}" />
 				<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
