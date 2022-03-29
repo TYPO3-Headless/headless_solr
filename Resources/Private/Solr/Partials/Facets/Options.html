@@ -19,6 +19,7 @@
 					value: option.value,
 					label: option.label,
 					count: option.documentCount,
+					active: option.selected,
 					uris: {
 						set: '{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}',
 						unset: '{s:uri.facet.removeFacetItem(facet: facet, facetItem: option)}'

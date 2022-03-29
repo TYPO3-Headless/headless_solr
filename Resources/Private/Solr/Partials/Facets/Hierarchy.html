@@ -19,6 +19,7 @@
 					value: childNode.label,
 					label: '{f:cObject(typoscriptObjectPath:\'lib.tx_solr.sys_category_title\',data:childNode.label)}',
 					count: childNode.documentCount,
+					active: childNode.selected,
 					uri: {
 						set: '{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}',
 						unset: '{s:uri.facet.removeFacetItem(facet: facet, facetItem: childNode)}'
