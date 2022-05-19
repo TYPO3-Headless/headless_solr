@@ -10,6 +10,7 @@
 			<f:format.json value="{
 				form: '{f:render(partial: \'Search/Form\', section: \'Form\', arguments: \'{arguments:arguments, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace}\') -> headless:format.json.decode()}',
 				facets: '{f:render(partial: \'Result/Facets.html\',arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
+				sorting: '{f:render(partial: \'Result/Sorting.html\',arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
 				documents: '{f:render(partial: \'Result/Document\', section: \'Document\', arguments: \'{currentPage:currentPage,pagination:pagination,resultSet:resultSet}\') -> headless:format.json.decode()}',
 				resultPerPage: '{f:render(partial: \'Result/PerPage\', section: \'PerPage\', arguments: \'{resultSet:resultSet}\') -> headless:format.json.decode()}',
 				allResultCount: resultSet.allResultCount,
