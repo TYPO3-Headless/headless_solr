@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-    "typo3/cms-core": "^9.5 || ^10.0"
+    "typo3/cms-core": "^11.5"
   },
   "suggest": {
     "friendsoftypo3/headless": "^2.0"

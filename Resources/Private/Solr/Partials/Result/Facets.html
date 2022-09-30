@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+
+<s:facet.area.group groupName="main" facets="{resultSet.facets.available}">
+	[
+		<f:for each="{areaFacets}" as="facet" iteration="iterator">
+			<f:render partial="Facets/{facet.partialName}" arguments="{resultSet:resultSet, facet:facet}"/>
+			<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+		</f:for>
+	]
+</s:facet.area.group>

@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+	  data-namespace-typo3-fluid="true"
+>
+
+<f:format.raw>
+	<f:format.json value="{
+		label: '{f:translate(key:facet.label,default:facet.label)}',
+		options: '{f:render(section:\'hierarchyTree\',arguments:\'{node:facet,facet:facet}\') -> headless:format.json.decode()}'
+	}" />
+</f:format.raw>
+
+<f:section name="hierarchyTree">
+	<f:format.raw>
+		[
+			<f:for each="{node.childNodes}" as="childNode" iteration="iterator">
+				<f:format.json value="{
+					value: childNode.label,
+					label: '{f:cObject(typoscriptObjectPath:\'lib.tx_solr.sys_category_title\',data:childNode.label)}',
+					count: childNode.documentCount,
+					active: childNode.selected,
+					uris: {
+						set: '{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}',
+						unset: '{s:uri.facet.removeFacetItem(facet: facet, facetItem: childNode)}'
+					},
+					children: '{f:render(section:\'hierarchyTree\',arguments:\'{node:childNode,facet:facet}\') -> headless:format.json.decode()}'
+				}" />
+				<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+
+			</f:for>
+		]
+	</f:format.raw>
+</f:section>

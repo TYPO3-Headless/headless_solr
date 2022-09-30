@@ -1,16 +1,18 @@
 <f:section name="Form">
 <f:spaceless>
-	<f:format.raw>
-		<f:format.json value="{
+    <f:variable name="searchUri" value="{f:uri.page(pageUid:settings.searchPid,pageType:7383)}" />
+    <f:variable name="suggestUri" value="{f:uri.page(pageUid:settings.searchPid,pageType:7384)}" />
+    <f:format.raw>
+        <f:format.json value="{
               additionalFilters: additionalFilters,
               existingParameters: existingParameters,
               pluginNamespace: pluginNamespace,
-              name: name,
-              value: value,
-              pageUid: pageUid,
-              languageUid: languageUid,
-              query: q
-		  }"/>
-	</f:format.raw>
+              name: 'q',
+              value: arguments.q,
+              query: q,
+              searchUri: searchUri,
+              suggestUri: suggestUri
+          }"/>
+    </f:format.raw>
 </f:spaceless>
 </f:section>

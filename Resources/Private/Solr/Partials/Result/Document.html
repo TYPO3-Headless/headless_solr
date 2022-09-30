@@ -5,30 +5,33 @@
 <f:section name="Document">
 	<f:spaceless>
 		<f:if condition="{resultSet.hasSearched}">
-			{"pagination": <s:widget.resultPaginate resultSet="{resultSet}">
-			,"list": {
-			"count": {resultSet.searchResults -> f:count()}
-			,"results": [<f:for each="{resultSet.searchResults}" as="searchResult" iteration="iterator">
-				<f:format.raw>
-				<f:format.json value="{
-					uid: searchResult.fields.uid,
-					pid: searchResult.fields.pid,
-					typeNum: searchResult.fields.typeNum,
-					site: searchResult.fields.site,
-					type: searchResult.fields.type,
-					title: searchResult.fields.title,
-					titleExact: searchResult.fields.titleExact,
-					subTitle: searchResult.fields.subTitle,
-					navTitle: searchResult.fields.navTitle,
-					author: searchResult.fields.author,
-					content: searchResult.fields.content,
-					contentExact: searchResult.fields.contentExact,
-					url: '{searchResult.fields.url -> headless:format.json.decode()}'
-				  }"/>
-				</f:format.raw>
-				{f:if(condition: iterator.isLast, else: ',')}
-		</f:for>]}
-			</s:widget.resultPaginate>}
+			{
+				"pagination": <f:render partial="Result/Pagination" section="Pagination" arguments="{currentPage:currentPage,pagination:pagination,resultSet:resultSet}" />,
+				"list": {
+					"count": {resultSet.searchResults -> f:count()},
+					"results": [<f:for each="{resultSet.searchResults}" as="searchResult" iteration="iterator">
+						<f:format.raw>
+						<f:format.json value="{
+							uid: searchResult.fields.uid,
+							pid: searchResult.fields.pid,
+							created: searchResult.fields.created,
+							changed: searchResult.fields.changed,
+							site: searchResult.fields.site,
+							type: searchResult.fields.type,
+							title: searchResult.fields.title,
+							titleExact: searchResult.fields.titleExact,
+							subTitle: searchResult.fields.subTitle,
+							navTitle: searchResult.fields.navTitle,
+							author: searchResult.fields.author,
+							content: searchResult.fields.content,
+							contentExact: searchResult.fields.contentExact,
+							url: searchResult.fields.url
+						  }"/>
+						</f:format.raw>
+						{f:if(condition: iterator.isLast, else: ',')}
+					</f:for>]
+				}
+			}
 		</f:if>
 	</f:spaceless>
 </f:section>

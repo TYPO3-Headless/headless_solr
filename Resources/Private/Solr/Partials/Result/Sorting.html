@@ -1,39 +1,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
 	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+	  data-namespace-typo3-fluid="true"
+>
 
-<f:section name="Sorting">
-			<f:for each="{resultSet.sortings}" as="sorting">
-
-				<f:if condition="{sorting.isResetOption}">
+[
+	<f:for each="{resultSet.sortings}" as="sorting" iteration="iterator">
+		<f:if condition="{sorting.isResetOption}">
+			<f:then>
+				<f:format.raw>
+					<f:format.json value="{
+						type: 'reset',
+						uri: '{s:uri.sorting.removeSorting()}',
+						label: sorting.label
+					}" />
+				</f:format.raw>
+			</f:then>
+			<f:else>
+				<f:if condition="{sorting.selected}">
 					<f:then>
-						<li>
-							<a href="{s:uri.sorting.removeSorting()}" class="solr-ajaxified">{sorting.label}</a>
-						</li>
+						<f:format.raw>
+							<f:format.json value="{
+								type: 'default',
+								active: 1,
+								direction: '{f:if(condition:sorting.isAscDirection,then:\'asc\',else:\'desc\')}',
+								uri: '{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}',
+								label: sorting.label
+							}" />
+						</f:format.raw>
 					</f:then>
-
 					<f:else>
-						<f:if condition="{sorting.selected}">
-							<f:then>
-								<li class="active">
-									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}" class="solr-ajaxified">
-										<f:if condition="{sorting.isAscDirection}">
-											<f:then><span class=" glyphicon glyphicon-arrow-up pull-right"></span></f:then>
-											<f:else><span class=" glyphicon glyphicon-arrow-down pull-right"></span></f:else>
-										</f:if>
-										<span>{sorting.label}</span>
-
-									</a>
-								</li>
-							</f:then>
-							<f:else>
-								<li>
-									<a href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.direction)}" class="solr-ajaxified">{sorting.label}</a>
-								</li>
-							</f:else>
-						</f:if>
+						<f:format.raw>
+							<f:format.json value="{
+								type: 'default',
+								active: 0,
+								direction: null,
+								uri: '{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.direction)}',
+								label: sorting.label
+							}" />
+						</f:format.raw>
 					</f:else>
-			</f:if>
-
-			</f:for>
-</f:section>
+				</f:if>
+			</f:else>
+		</f:if>
+		<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+	</f:for>
+]
