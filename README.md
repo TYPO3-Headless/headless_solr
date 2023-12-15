@@ -4,7 +4,7 @@ This extension provides integration to headless extension with solr extension.
 If you have any questions just drop a line in #initiative-pwa Slack channel.
 
 ## Requirements
-Extension requires TYPO3 in version at least 9.5.
+Extension requires TYPO3 in version at least 11.5 or 12.4.
 
 ## Installation
 Install extension using composer\
