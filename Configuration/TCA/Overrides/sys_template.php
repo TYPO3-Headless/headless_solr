@@ -1,11 +1,14 @@
 <?php
-defined('TYPO3_MODE') || die();
 
-call_user_func(function () {
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+defined('TYPO3') || die();
+
+call_user_func(static function () {
     /**
-     * Default TypoScript for Headless Solr
+     * Default TypoScript for Headless_solr
      */
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+    ExtensionManagementUtility::addStaticFile(
         'headless_solr',
         'Configuration/TypoScript',
         'Headless Solr'
