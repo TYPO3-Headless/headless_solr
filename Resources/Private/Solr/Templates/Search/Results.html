@@ -1,9 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-	  xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers">
 
-<f:layout name="Split"/>
-
+<f:layout name="Split" />
 <f:section name="content">
 	<f:spaceless>
 		<f:format.raw>
@@ -17,7 +15,7 @@
 				resultsPerPage: resultSet.usedResultsPerPage,
 				currentSearch: '{s:uri.search.currentSearch()}',
 				arguments: arguments.q
-		  }"/>
+		  }" />
 		</f:format.raw>
 	</f:spaceless>
 </f:section>

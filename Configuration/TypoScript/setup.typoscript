@@ -16,31 +16,20 @@ lib.tx_solr.sys_category_title {
     }
 }
 
-tt_content.list =< lib.contentElementWithHeader
-tt_content.list {
+tt_content.solr_pi_results =< lib.contentElementWithHeader
+tt_content.solr_pi_results {
     fields {
         content {
             fields {
-                data = CASE
+                data = USER_INT
                 data {
-                    key.field = list_type
-
-                    solr_pi_results = USER
-                    solr_pi_results {
-                        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                        vendorName = ApacheSolrForTypo3
-                        extensionName = Solr
-                        settings < plugin.tx_solr.settings
-                        persistence < plugin.tx_solr.persistence
-                        view < plugin.tx_solr.view
-                        pluginName = pi_results
-                        switchableControllerActions {
-                            Search {
-                                1 = results
-                                2 = form
-                            }
-                        }
-                    }
+                    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                    vendorName = ApacheSolrForTypo3
+                    extensionName = Solr
+                    settings < plugin.tx_solr.settings
+                    persistence < plugin.tx_solr.persistence
+                    view < plugin.tx_solr.view
+                    pluginName = pi_results
                 }
             }
 
