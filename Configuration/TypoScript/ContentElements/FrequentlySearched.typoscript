@@ -1,0 +1,15 @@
+tt_content.solr_pi_frequentlysearched =< lib.contentElementWithHeader
+tt_content.solr_pi_frequentlysearched {
+  fields {
+    content = JSON
+    content {
+      fields {
+        data = EXTBASEPLUGIN
+        data {
+          extensionName = Solr
+          pluginName = pi_frequentlySearched
+        }
+      }
+    }
+  }
+}

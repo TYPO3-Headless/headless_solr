@@ -1,0 +1,15 @@
+tt_content.solr_pi_search =< lib.contentElementWithHeader
+tt_content.solr_pi_search {
+  fields {
+    content = JSON
+    content {
+      fields {
+        data = EXTBASEPLUGIN
+        data {
+          extensionName = Solr
+          pluginName = pi_search
+        }
+      }
+    }
+  }
+}

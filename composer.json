@@ -21,6 +21,10 @@
       "name": "Łukasz Uznański",
       "role": "Developer"
     },
+	  {
+		  "name": "Msrcin Sągol",
+		  "role": "Developer"
+	  },
     {
       "name": "TYPO3 PWA Initiative",
       "role": "Developer",
@@ -28,10 +32,10 @@
     }
   ],
   "require": {
-    "typo3/cms-core": "^11.5 || ^12.4"
+    "typo3/cms-core": "^13.4"
   },
   "suggest": {
-    "friendsoftypo3/headless": "^2.0 || ^4.0"
+    "friendsoftypo3/headless": "^4.0"
   },
   "extra": {
     "typo3/cms": {

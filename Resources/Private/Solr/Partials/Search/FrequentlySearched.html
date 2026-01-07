@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+	data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FrequentlySearched">
+
+<s:frequentlySearched>
+	<f:if condition="{frequentSearches}">
+		<f:spaceless>
+			<f:format.raw>
+				{
+					"label": <f:format.json value="{f:translate(key: 'frequentSearches', extensionName: 'solr', default: 'Frequently searched')}" />,
+					"items": [
+						<f:for each="{frequentSearches}" as="searchedForInfo" iteration="iterator">
+							{
+								"query": <f:format.json value="{searchedForInfo.q}" />,
+								"uri": <f:format.json value="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" />
+							}
+							<f:if condition="{iterator.isLast}"><f:else>,</f:else></f:if>
+						</f:for>
+					]
+				}
+			</f:format.raw>
+		</f:spaceless>
+	</f:if>
+</s:frequentlySearched>
+
+</f:section>
+
+</html>
