@@ -1,4 +1,4 @@
-@import './TypoScript/ContentElements/*.typoscript'
+@import './ContentElements/*.typoscript'
 
 plugin.tx_solr {
   settings {
